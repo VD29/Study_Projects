@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    string letters{};
+
+    cout << "Enter a string to build a pyramid: ";
+    getline(cin, letters);
+
+    size_t num_letters = letters.length();
+
+    size_t position {0};
+
+    for (char c: letters) {
+
+        size_t num_spaces = num_letters - position;
+        while (num_spaces > 0) {
+            cout << " ";
+            --num_spaces;
+        }
+
+        for (size_t j=0; j < position; j++) {
+            cout << letters.at(j);
+        }
+
+        cout << c;
+
+        for (int j=position-1; j >=0; --j) {
+            auto n = static_cast<size_t>(j);
+            cout << letters.at(n);
+        }
+
+        cout << endl;
+        ++position;
+    }
+
+    return 0;
+}
