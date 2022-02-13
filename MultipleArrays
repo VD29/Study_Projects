@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int *apply_all(const int *const arr1, size_t size1, const int *const arr2, size_t size2) {
+    int *new_array {};
+    new_array = new int[size1*size2];
+    int position{0};
+    
+    for (size_t i=0; i < size2; ++i) {
+        for (size_t j=0; j < size1; ++j) {
+            new_array[position] = arr1[j] * arr2[i];
+            ++position;
+        }
+    }
+
+    return new_array;
+}
+
+void print(const int *const arr, size_t result_size) {
+    cout << "[";
+    for (size_t i = 0; i < result_size; i++)
+    {
+            cout << arr[i] << " ";
+    }
+     cout << "]";
+}
+
+int main()
+{
+    const int size1{5};
+    const int size2{5};
+    int arr1[] {1,2,3,4,5};
+    int arr2[] {10, 20, 30, 40, 50};
+    
+    cout << "First array:\n";
+    print(arr1, size1);
+    cout << endl;
+    cout << "Second array:\n";
+    print(arr2, size2);
+    cout << endl;
+    
+    int *result = apply_all(arr1, size1, arr2, size2);
+    constexpr size_t size3 = size1*size2;
+    cout<<"Multiple array:\n";
+    print(result, size3);
+    delete result;
+
+    return 0;
+}
